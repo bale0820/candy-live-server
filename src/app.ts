@@ -131,6 +131,44 @@ io.on("connection", (socket) => {
 
     });
 
+
+    socket.on("offer", (data) => {
+
+        socket
+            .to(data.roomId)
+            .emit(
+                "offer",
+                data.offer
+            );
+
+    });
+
+
+    socket.on("answer", (data) => {
+
+        socket
+            .to(data.roomId)
+            .emit(
+                "answer",
+                data.answer
+            );
+
+    });
+
+    socket.on(
+        "ice-candidate",
+        (data) => {
+
+            socket
+                .to(data.roomId)
+                .emit(
+                    "ice-candidate",
+                    data.candidate
+                );
+
+        }
+    );
+
 });
 
 server.listen(8081, "0.0.0.0", () => {
