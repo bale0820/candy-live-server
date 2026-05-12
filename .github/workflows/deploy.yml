@@ -19,7 +19,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
 
           script: |
-            cd /home/ubuntu/candy/express/candy_live_server
+            cd /home/ubuntu/candy/express/candy-live-server
 
             git pull origin main
 
