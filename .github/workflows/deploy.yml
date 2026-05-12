@@ -19,12 +19,16 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
 
           script: |
-            cd /home/ubuntu/candy/express/candy-live-server
+              cd /home/ubuntu/candy/express/candy-live-server
 
-            git pull origin main  
+              git fetch origin
 
-            npm install
+              git reset --hard origin/main
 
-            npm run build
+              npm ci
 
-            pm2 reload candy-live || pm2 start dist/app.js --name candy-live
+              npm run build
+
+              pm2 reload candy-live || pm2 start dist/app.js --name candy-live
+
+              pm2 save
