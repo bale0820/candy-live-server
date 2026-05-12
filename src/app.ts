@@ -16,7 +16,7 @@ app.use(cors({
 }));
 
 
-app.get("/chat/:roomId", async (req, res) => {
+app.get("/live/chat/:roomId", async (req, res) => {
 
     const roomId = req.params.roomId;
 
@@ -34,11 +34,14 @@ app.get("/chat/:roomId", async (req, res) => {
 const server = http.createServer(app);
 
 const io = new Server(server, {
+
+    path: "/live/socket.io",
+
     cors: {
         origin: "*"
     }
-});
 
+});
 io.use(async (socket, next) => {
 
     try {
