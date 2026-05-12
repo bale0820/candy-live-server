@@ -21,10 +21,10 @@ jobs:
           script: |
             cd /home/ubuntu/candy/express/candy-live-server
 
-            git pull origin main
+            git pull origin main  
 
             npm install
 
             npm run build
 
-            pm2 reload candy || pm2 start dist/app.js --name candy-live
+            pm2 reload candy-live || pm2 start dist/app.js --name candy-live
