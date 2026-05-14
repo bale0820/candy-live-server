@@ -13,6 +13,6 @@ export const productRepository = {
     const [rows] = await db.query<ProductBrodcastRow[]>(`select * from live_broadcast where product_id = ?`,[ppk]);
     
 
-    return rows.map(() => toCamel<ProductBrodcast>(rows));
+    return rows.map((row) => toCamel<ProductBrodcast>(row));
 }
 }
