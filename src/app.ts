@@ -169,7 +169,7 @@
 //         }
 //     );
 
-    
+
 
 // });
 
@@ -190,6 +190,11 @@ import cors from "cors";
 import { connectMongo } from "./config/mongo";
 import { Chat } from "./schema/chatSchema";
 import { userRepository } from "./repository/userRepository";
+import { productRoutes } from "./routes/productRoutes";
+import { promisePool } from "./config/db";
+import { ResultSetHeader } from "mysql2";
+import { authMiddleware } from "./utils/authMiddleware";
+import { liveRoutes } from "./routes/liveRoutes";
 
 // =========================
 // Mongo 연결
@@ -201,6 +206,7 @@ connectMongo();
 // =========================
 const app = express();
 
+app.use(express.json());
 // =========================
 // cors
 // =========================
@@ -473,6 +479,39 @@ io.on(
     }
 );
 
+
+app.delete(
+    "/live/:roomId",
+    async (req, res) => {
+
+        const roomId =
+            req.params.roomId;
+
+        await promisePool.query(
+            `
+            DELETE FROM live_broadcast
+            WHERE room_id = ?
+            `,
+            [roomId]
+        );
+
+        res.json({
+            message: "방송 종료"
+        });
+
+    }
+);
+
+
+
+
+
+
+app.use('/live/product', productRoutes);
+app.use(
+    "/live",
+    liveRoutes
+);
 // =========================
 // server 실행
 // =========================
