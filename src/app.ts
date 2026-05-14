@@ -473,11 +473,33 @@ io.on(
                     "socket disconnect"
                 );
 
+
+
+            }
+        );
+
+        socket.on(
+            "broadcast_end",
+            async (roomId) => {
+
+                console.log(
+                    "broadcast end:",
+                    roomId
+                );
+
+                // viewer 전체에게 종료 알림
+                socket
+                    .to(roomId)
+                    .emit(
+                        "broadcast_end"
+                    );
+
             }
         );
 
     }
 );
+
 
 
 app.delete(
