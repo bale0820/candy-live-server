@@ -20,15 +20,15 @@ jobs:
 
           script: |
               cd /home/ubuntu/candy/express/candy-live-server
+              ./deploy-live.sh
+              # git fetch origin
 
-              git fetch origin
+              # git reset --hard origin/main
 
-              git reset --hard origin/main
+              # npm ci
 
-              npm ci
+              # npm run build
 
-              npm run build
+              # pm2 reload candy-live || pm2 start dist/app.js --name candy-live
 
-              pm2 reload candy-live || pm2 start dist/app.js --name candy-live
-
-              pm2 save
+              # pm2 save
