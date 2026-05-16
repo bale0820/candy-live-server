@@ -8,7 +8,7 @@ export const productController = {
              const ppk = req.params.ppk as string;
 
              if(!ppk) {
-                throw new Error("no ppk");
+                throw new Error("no ppk!");
              }
             const data = await productService.getProductBrodcastList(ppk);
 
