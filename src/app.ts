@@ -538,9 +538,10 @@ app.use(
 // server 실행
 // =========================
 const PORT =
-    process.env.PORT || 8081;
+    Number(process.env.PORT) || 8081;
+    
 
-app.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
 
     console.log(
         `server start!!!!! : ${PORT}`
