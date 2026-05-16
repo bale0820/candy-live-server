@@ -489,7 +489,7 @@ io.on(
 
                 // viewer 전체에게 종료 알림
                 socket
-                    .to(roomId)
+                    .to(roomId)!
                     .emit(
                         "broadcast_end"
                     );
@@ -537,14 +537,13 @@ app.use(
 // =========================
 // server 실행
 // =========================
-server.listen(
-    8081,
-    "0.0.0.0",
-    () => {
+const PORT =
+    process.env.PORT || 8081;
 
-        console.log(
-            "socket server running"
-        );
+app.listen(PORT, () => {
 
-    }
-);
+    console.log(
+        `server start!!! : ${PORT}`
+    );
+
+});
