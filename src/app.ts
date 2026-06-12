@@ -491,7 +491,7 @@ io.on(
                     await promisePool.query(
                         `
                         DELETE FROM live_broadcast
-                        WHERE room_id = ?
+                        WHERE room_id = $1
                         `,
                         [roomId]
                     );
@@ -524,7 +524,7 @@ app.delete(
         await promisePool.query(
             `
             DELETE FROM live_broadcast
-            WHERE room_id = ?
+            WHERE room_id = $1
             `,
             [roomId]
         );
@@ -551,7 +551,7 @@ app.use(
 // =========================
 const PORT =
     Number(process.env.PORT) || 8081;
-    
+
 
 server.listen(PORT, "0.0.0.0", () => {
 
